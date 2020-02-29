@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Pioneer Bank</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+    <div id="login-area" class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h2 class="text-center mb-5">Welcome to pioneer Bank</h2>
+                <div class="submit-area">
+                    <p>Login</p>
+                    
+                        <input type="email" class="form-control" id="" placeholder="Enter email"><br>
+                        
+                        <input type="password" class="form-control" id="" placeholder="Password"><br>
+    
+                        <button id="submit-btn" type="submit" class="btn btn-primary">Submit</button>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="transition-area" class="container">
+
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <h2 class="text-center mb-5">Transition Area</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposit status">
+                    <h5>Deposit</h5>
+                    <h2>$ <span id="currentDeposit">00</span> </h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="balanceWithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="balance status">
+                    <h5>Balance</h5>
+                    <h2>$<span id="balanceDeposit">1240</span> </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposit</h4>
+                    <input id="depositAmount" class="form-control" type="text" placeholder="$ amount you want to deposit"><br>
+                    <button id="addDeposit" class="btn btn-success">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input id="withdraw-amount" class="form-control" type="text" placeholder="$ amount you want to withdraw"><br>
+                    <button id="withdrawAmount" class="btn btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const submitbtn = document.getElementById("login-area");
+        const transitionArea = document.getElementById("transition-area");
+
+        submitbtn.addEventListener('click',function(){
+            submitbtn.style.display="none";
+            transitionArea.style.display="block";
+        });
+
+        const addDeposit = document.getElementById("addDeposit");
+        addDeposit.addEventListener('click',function(){
+
+
+            const totalValue = getNumberId("depositAmount"); 
+
+            depositeTotal("currentDeposit",totalValue);
+            depositeTotal("balanceDeposit",totalValue);
+
+            document.getElementById("depositAmount").value="";
+
+        });
+
+        function depositeTotal(id,totalValue){
+            const balanceDepositt = document.getElementById(id).innerText;
+            const totalValueBalance = parseFloat(balanceDepositt);
+            const totalBalance = totalValue + totalValueBalance;
+            document.getElementById(id).innerText=totalBalance;
+        }
+
+
+        const withdreabtn = document.getElementById("withdrawAmount");
+        withdreabtn.addEventListener("click",function(){
+
+            const getNumber = getNumberId("withdraw-amount"); 
+        
+            withdrawTotal("balanceWithdraw",getNumber);
+            withdrawTotal("balanceDeposit",-1*getNumber);
+
+            document.getElementById("withdraw-amount").value="";
+
+        })
+       
+       function getNumberId(id){
+            const withdrawAmountt=document.getElementById(id).value;
+            const withdrawParAmount = parseFloat(withdrawAmountt); 
+            return withdrawParAmount;
+       }
+
+        function withdrawTotal(id,withdrawParAmount){
+            const totalvalue = document.getElementById(id).innerText;
+            const totalvaluewith  = parseFloat(totalvalue); 
+            const withdreaValue = totalvaluewith + withdrawParAmount;
+            document.getElementById(id).innerText = withdreaValue;
+        }
+
+    </script>
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
